@@ -1,0 +1,40 @@
+{% extends "portfolio/_base.html" %}
+{% load static %}
+<div class="container mx-auto flex-auto justify-start">
+{% block content %}
+<!-- Header Image -->
+<header>
+  <div class="w-full bg-cover bg-center" style="height:16rem; background-image: url({% static 'portfolio/index_bg.jpg' %});">
+      <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50">
+          <div class="text-center">
+              <h1 class="text-white text-2xl font-semibold uppercase md:text-7xl">Blogs</h1>
+          </div>
+      </div>
+  </div>
+</header>
+<!-- title and main background color -->
+<div class="h-screen bg-[#262626]">
+  <h1 class="text-white flex-1 flex items-center justify-center text-3xl py-8">Read ahead, and remember to live with intention...</h1>
+  <div class="container mx-auto text-white">
+<!-- Body Content -->
+  {% if blog_list %}
+    <ul>
+      {% for blog in blog_list %}
+      <div class="container mx-auto text-white ">
+        <hr class="mx-auto h-0.5 w-full my-4 bg-gray-200 border-0 dark:bg-gray-700"> 
+          <div class="flex justify-between">
+            <span class="inline"><a href="{% url 'blog-details' blog.pk %}">{{blog.title}}</a></span>
+            <span class="inline">{{blog.summary}}</span>
+            <span class="inline">{{blog.date_created}}<span>
+          </div>
+      </div>
+      {% endfor %}
+      <hr class="mx-auto h-0.5 w-full my-4 bg-gray-200 border-0 dark:bg-gray-700"> 
+    </ul>
+  </div>
+  {% else %}
+    <p>There are no blogs to display. Get to work!!!!</p>
+  {% endif %}
+</div>
+{% endblock %}
+</div>
